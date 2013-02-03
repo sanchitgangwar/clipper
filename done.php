@@ -75,7 +75,7 @@
 	<div id="container">
 		<div id="top-div">
 			<button id="back-button" type="button" onClick="window.location = 'workspace.php'">&lt; Home</button>
-		</div>		
+		</div>
 
 		<div id="content">
 			<?php if($error != 1) { ?>

@@ -303,7 +303,6 @@ a#download:visited {
 
 }
 #controls-div {
-	background-color: rgba(43, 43, 255, 0.2);
 
 }
 
@@ -317,7 +316,7 @@ a#download:visited {
 	font-size: 1em;
 	height: 10%;
 	margin: 0;
-	background-color: rgba(43, 43, 255, 0);
+	background-color: rgba(43, 43, 255, 0.2);
 	color: #fff;
 }
 
@@ -327,7 +326,7 @@ a#download:visited {
 	-moz-transition: 0.1s;
 	-o-transition: 0.1s;
 
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
 #clear-button {
@@ -340,7 +339,7 @@ a#download:visited {
 	width: 49%;
 	font-size: 1em;
 	height: 10%;
-	background-color: rgba(43, 43, 255, 0);
+	background-color: rgba(43, 43, 255, 0.2);
 	color: #fff;
 }
 
@@ -350,7 +349,7 @@ a#download:visited {
 	-moz-transition: 0.1s;
 	-o-transition: 0.1s;
 
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
 

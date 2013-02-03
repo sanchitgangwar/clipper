@@ -1,0 +1,11 @@
+{
+    "name":"Clipper",
+    "developer": {
+        "name":"ABC",
+        "url":"http://bitemelater.in"
+    },
+    "description":"An easy-to-use video clipper.",
+    "icons":{
+        "128":"icon.png"
+    }
+}
