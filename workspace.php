@@ -5,19 +5,45 @@
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.9.0.custom.min.js"></script>
+	<script type="text/javascript" src="js/modernizr.custom.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollto.min.js"></script>
+
+
 	<script type="text/javascript" src="js/stepper.js"></script>
 	<script type="text/javascript" src="js/mousehold.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="css/style_video.css">
 	<link rel="stylesheet" type="text/css" href="css/slider.css">
+	<link rel="stylesheet" type="text/css" href="css/style_video.css">
 
 
 </head>
 
 <body>
 	<div id="container">
+		<div id="first-page">
+			<div id="header">Clipper</div>
+			<form action="done.php" method="post" enctype="multipart/form-data">
+
+			<div id="first-content">Select a video file<br/><br/>
+				<input type="file" name="file" id="file" size=2/>
+				<br/><br/>
+
+				<button id="select-file" type="button" onClick="fileSelected()">Continue</button>
+			</div>
+
+			<div id="footer">
+				About Help
+			</div>
+
+		</div>
+
+		<div id="second-page">
+			<div id="top-div">
+				<button id="back-button" type="button" onClick="goBack()">&lt; Back</button>
+				<button name="submit_form" type="submit" id="submit-button">Done! ></button>
+			</div>
 		<div id="videodiv">
-			<video id="video" src="howfast.ogg" type="video/ogv">		
+			<video id="video" type="video/ogv">		
 			</video>
 
 			<div class="video-controls">
@@ -28,20 +54,22 @@
 			</div>
 		</div>
 
+		<div id="controls-div">
+			<button type="button" id="play-selected-button" onClick="playSelected()">Play Selected</button>
+			<button type="button" id="clear-button" onClick="clearSelected()">Clear</button>
+		</div>
 
 		<div id="select-div">
-			<button id="select-button" href="">Hold to Select</button>
+			<button type="button" id="select-button" href="" style="display: none;">Hold to Select</button>
 		</div>
 
 		<div id="data"></div>
 		<div id="width"></div>
 
-		<form action="done.php" method="post" enctype="multipart/form-data">
-			<input type="file" name="file" />
-			<input type="text" name="start-times" id="start-times-input" />
-			<input type="text" name="end-times" id="end-times-input"  />
-			<input type="submit" value="Submit" name="submit_form" />
+			<input type="text" name="start-times" id="start-times-input" style="display: none" />
+			<input type="text" name="end-times" id="end-times-input"  style="display: none"/>
 		</form>
+		</div>
 	</div>
 
 	<script>
@@ -54,6 +82,12 @@
 		$("#select-button").mousedown(insertStartTime);
 		$("#select-button").mouseup(insertEndTime);
 
+		function clearSelected() {
+			start_time = new Array();
+			end_time = new Array();
+			$('#selected-line-div').empty();
+		}
+
 		function changeWidth(index) {
 			var pixels_per_sec = $(".slider").width()/video.duration;
 			var div_name = "#line-" + index;
@@ -62,23 +96,16 @@
 		}
 
 		function insertStartTime() {
+			$('#select-button').html("Selecting..");
 			stop_anim = false;
 			start_time.push(video.currentTime);
 			var left = $(".slider").width()/video.duration * video.currentTime;
 			$("#start-times-input").val(start_time);
 			$("#selected-line-div").append("<div class='new-line' id='line-" + index +"' style='width: 0; left: " + left + ";'></div>");
-
-			
-			// var interval = setInterval(function() { 
-			// 		changeWidth(index); 
-			// 		if(stop_anim == true){
-			// 			clearInterval(interval);
-			// 			return;
-			// 		}
-			// 	}, 50);
 		}
 
 		function insertEndTime() {
+			$('#select-button').html("Hold to Select");
 			end_time.push(video.currentTime);
 			$("#end-times-input").val(end_time);
 			stop_anim = true;
@@ -86,7 +113,30 @@
 		}
 
 		function submit() {
-			alert(';ere"');
+		}
+
+		var temp;
+		function playSelected() {
+			temp = video.currentTime;
+			len = start_time.length;
+			if(start_time.length <= 0) return;
+			video.currentTime = start_time[0];
+			var i = 1;
+
+			video.addEventListener("timeupdate", function() {
+		       if (parseFloat(this.currentTime).toFixed(1) >= parseFloat(end_time[i-1]).toFixed(1)) {
+		            if(i == start_time.length)
+		            {
+		            	this.currentTime = temp;
+		            	playOrPause();
+		            	this.removeEventListener("timeupdate", arguments.callee, false);
+		            }
+		            this.currentTime = start_time[i];
+		            i++;
+		        }
+		    }, false);
+			
+
 		}
 	</script>
 
@@ -221,6 +271,56 @@
 			}
 
 			$("#video").click(playOrPause);
+
+
+		function fileSelected() {
+			if(document.getElementById('file').value != "")
+			{
+				var file = document.getElementById('file').files[0]; // 1st member in files-collection
+				var video = document.querySelector('video');
+				var canPlay = video.canPlayType(file.type);	
+				if(canPlay === '') {
+					var playable = [];	
+
+					if(Modernizr.video.webm) {
+						playable.push('webm');
+					}	
+
+					if(Modernizr.video.ogg) {
+						playable.push('ogg');
+					}	
+
+					if(Modernizr.video.h264) {
+						playable.push('mp4 (h264)');
+					}	
+
+					alert("Video format not supported by your browser. Supported types: " + playable.join(', ') + '.');
+					return;
+				}	
+				$('#container').scrollTo('#second-page', 500);	
+				$('#select-button').show(500);
+				$('#footer').hide(500);
+
+				var fileURL = "";
+				if(window.webkitURL)
+	 				fileURL = window.webkitURL.createObjectURL(file);
+	 			else
+	 				fileURL = window.URL.createObjectURL(file);
+
+	 			video.src = fileURL;
+  				video.load();
+	 		}
+	 	}
+
+	 	function goBack() {
+	 		start_time = new Array();
+	 		end_time = new Array();
+			$('#selected-line-div').empty();
+
+	 		$('#container').scrollTo('#first-page', 500);
+	 		$('#select-button').hide(500);
+	 		$('#footer').show(500);
+	 	}
 	</script>
 </body>
 

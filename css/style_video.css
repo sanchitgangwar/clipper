@@ -2,8 +2,57 @@ html, body{
 	margin: 0px;
 	padding: 0px;
 	border: 0px;
+	background-image: url("../images/background.jpg");
 }
 
+#first-page {
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+	max-width: 1366px;
+	overflow: hidden !important;
+	white-space: nowrap;
+}
+
+#second-page {
+	height: 100%;
+	display: inline-block;
+}
+
+#container {
+	height: 100%;
+	overflow: hidden !important;
+}
+
+#header {
+	color: rgba(255, 255, 255, 0.5);
+	text-align: center;
+	width: 100%;
+	font-size: 3em;
+	margin: auto;
+	margin-top: 10%;
+}
+
+#first-content {
+	color: rgba(255, 255, 255, 0.8);
+	width: 100%;
+	font-size: 1.5em;
+	margin: auto;
+	margin-top: 15%;
+	text-align: center;
+}
+
+#footer {
+	width: 100%;
+	padding-bottom: 3%;
+	color: rgba(255, 255, 255, 0.5);
+	text-align: center;
+	font-size: 0.8em;
+	position: absolute;
+	bottom: 0px;
+}
 /* Remove outlines from buttons */
 #video::-moz-focus-inner {
   border: none;
@@ -50,8 +99,6 @@ a#header_link:hover {
 
 div#videodiv, div#controldiv{
 	display: inline-block;
-	background-color: #F6F4F4;
-	border: 1px #E8E8E8 solid;
 	/*resize: both;*/
 	overflow: hidden;
 	width: 90%;
@@ -69,6 +116,14 @@ div#heading-div {
 	overflow: hidden;
 	padding: 8px;
 	padding-bottom: 32px;
+}
+
+#top-div{
+	height: 8%;
+	width: 100%;
+	left: 0;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.8);
 }
 
 div.video-controls{
@@ -127,120 +182,177 @@ button {
 	cursor: pointer;
 	outline: none;
 	display: inline-block;
+	border: 0px;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+#submit-button {
+	float: right;
+}
+
+#back-button,#submit-button {
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: 0.2s;
+	-o-transition: 0.2s;
+
+	margin: auto;
+	height: 100%;
+	font-size: 1em;
+
+	background-color: rgba(255, 255, 255, 0);
+	color: #fff;
+
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+#back-button:active,#submit-button:active {
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: 0.2s;
+	-o-transition: 0.2s;
+
+	background-color: rgba(255, 255, 255, 0.6);
+}
+
+#select-file {
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: 0.2s;
+	-o-transition: 0.2s;
+
+	margin: auto;
+	width: 100%;
+	height: 15%;
+	font-size: 1em;
+
+	background-color: rgba(26, 172, 232, 0.3);
+	color: #fff;
+}
+
+#select-file:active {
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: 0.2s;
+	-o-transition: 0.2s;
+
+	background-color: rgba(26, 172, 232, 0.6);
 }
 
 #select-button {
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: 0.2s;
+	-o-transition: 0.2s;
+
 	position: absolute;
-	bottom: 10%;
+	bottom: 5%;
 	margin: auto;
 	width: 100%;
 	height: 15%;
 	font-size: 1.5em;
-	border: 0px;
+
+	background-color: rgba(255, 43, 43, 0.3);
+	color: #fff;
 }
 
-.control-button {
-	outline: none;
-	display: inline-block;
-	outline: none;
-	border: 0px;
-	border-top: 1px solid #96d1f8;
-	background: #507c99;
-	background: -webkit-gradient(linear, left top, left bottom, from(#5ca2d1), to(#507c99));
-	background: -webkit-linear-gradient(top, #5ca2d1, #507c99);
-	background: -moz-linear-gradient(top, #5ca2d1, #507c99);
-	background: -ms-linear-gradient(top, #5ca2d1, #507c99);
-	background: -o-linear-gradient(top, #5ca2d1, #507c99);
-	padding: 9.5px 19px;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
-	text-shadow: rgba(0,0,0,.4) 0 1px 0;
-	color: white;
-	font-size: 13px;
-	font-family: 'balham', Georgia, serif;
-	text-decoration: none;
+#select-button:active {
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: 0.2s;
+	-o-transition: 0.2s;
+
+	background-color: rgba(255, 43, 43, 0.6);
+}
+
+#download-button {
 	vertical-align: middle;
-	margin-right: 2%;
+
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: 0.2s;
+	-o-transition: 0.2s;
+
+	position: absolute;
+	top: 50%;
+	margin-top: -7.5%;
+	width: 100%;
+	height: 15%;
+
+	background-color: rgba(0, 145, 39, 0.3);
+	color: #fff;
+	text-align: center;
+	font-size: 2em;
+	line-height: 50px;
 }
 
-.control-button:hover {
-	color: #ffffff;
-	cursor: pointer;
-}
+#download-button:active {
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: 0.2s;
+	-o-transition: 0.2s;
 
-.control-button:active {
-	outline: none;
-    border-top: 0px;
-	box-shadow: 0px 0px 20px 2px #0099FF;
-	-webkit-box-shadow: 0px 0px 20px 2px #0099FF;
-	-moz-box-shadow: 0px 0px 20px 2px #0099FF;   
+	background-color: rgba(0, 145, 39, 0.6);
 }
-
-.continue-button {
-	outline: none;
-	display: inline-block;
-	outline: none;
-	border: 0px;
-	border-top: 1px solid #96d1f8;
-	background: #507c99;
-	background: -webkit-gradient(linear, left top, left bottom, from(#5ca2d1), to(#507c99));
-	background: -webkit-linear-gradient(top, #5ca2d1, #507c99);
-	background: -moz-linear-gradient(top, #5ca2d1, #507c99);
-	background: -ms-linear-gradient(top, #5ca2d1, #507c99);
-	background: -o-linear-gradient(top, #5ca2d1, #507c99);
-	padding: 9.5px 19px;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
-	text-shadow: rgba(0,0,0,.4) 0 1px 0;
-	color: white;
-	font-size: 13px;
-	font-family: 'balham', Georgia, serif;
+a#download:visited {
 	text-decoration: none;
-	vertical-align: middle;
-	margin-right: 2%;
+
+}
+#controls-div {
+	background-color: rgba(43, 43, 255, 0.2);
+
 }
 
-.continue-button:hover {
-	color: #ffffff;
-	cursor: pointer;
+#play-selected-button {
+	transition: 0.1s;
+	-webkit-transition: 0.1s;
+	-moz-transition: 0.1s;
+	-o-transition: 0.1s;
+
+	width: 49%;
+	font-size: 1em;
+	height: 10%;
+	margin: 0;
+	background-color: rgba(43, 43, 255, 0);
+	color: #fff;
 }
 
-.continue-button:active {
-	outline: none;
-    border-top: 0px;
-	box-shadow: 0px 0px 20px 2px #0099FF;
-	-webkit-box-shadow: 0px 0px 20px 2px #0099FF;
-	-moz-box-shadow: 0px 0px 20px 2px #0099FF;   
+#play-selected-button:active{
+	transition: 0.1s;
+	-webkit-transition: 0.1s;
+	-moz-transition: 0.1s;
+	-o-transition: 0.1s;
+
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
+#clear-button {
+	transition: 0.1s;
+	-webkit-transition: 0.1s;
+	-moz-transition: 0.1s;
+	-o-transition: 0.1s;
 
-/* Input Boxes */
-
-input.time-format {
-	width: 100px;
-	margin: 5px;
-	border-radius: 4px;
-	border: 1px solid #888C8F;
-	outline: none;
-	padding: 5px;
-	padding-top: 10px;
-	color: #656565;
-	font-family: 'balham';
-	font-size: 16px;
+	margin: 0;
+	width: 49%;
+	font-size: 1em;
+	height: 10%;
+	background-color: rgba(43, 43, 255, 0);
+	color: #fff;
 }
 
-input.time-format:focus {
-	border: 1px solid #0099FF;
-	box-shadow: 0px 0px 8px 0px #0099FF;
-	-webkit-box-shadow: 0px 0px 8px 0px #0099FF;
-	-moz-box-shadow: 0px 0px 8px 0px #0099FF;   	
+#clear-button:active {
+	transition: 0.1s;
+	-webkit-transition: 0.1s;
+	-moz-transition: 0.1s;
+	-o-transition: 0.1s;
+
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
-input.time-format:disabled{
-	background-color: #E2E2E2;
-}
 
 
 /* Remove outlines from buttons */
